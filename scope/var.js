@@ -1,5 +1,5 @@
 
-
+var global = 'begin'
 
 let value2 =  "done."
 
