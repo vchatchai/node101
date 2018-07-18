@@ -4,5 +4,9 @@ console.log(firstColor);
 console.log(secondColor);
 
 
-let [,,thirdColumn] = colors
-console.log(thirdColumn)
+let [,,thirdColumn] = colors;
+console.log(thirdColumn);
+
+[ ,firstColor, secondColor] = colors;
+console.log(firstColor);
+console.log(secondColor);
