@@ -19,7 +19,3 @@ console.log("set" in descriptor);
 console.log(descriptor.enumerable);
 
 
-let CustomerHTMLElement2 (function() {
-    "use strict";
-
-})
