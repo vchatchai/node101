@@ -1,0 +1,39 @@
+<html>
+    <title>Node101</title>
+    <body>
+        <script>
+            let rejected;
+            window.onunhandledrejection = function(event){
+                console.log(event.type);
+                console.log(event.reason.message);
+                console.log(rejected === event.promise);
+            };
+            window.onrejectionhandled = function(event) {
+                console.log(event.type);                    // "rejectionhandled"
+                console.log(event.reason.message);          // "Explosion!"
+                console.log(rejected === event.promise);    // true
+            };
+
+            rejected = Promise.reject(new Error("Explosion!"));
+
+            let possiblyUnhandledRejections = new Map();
+
+            window.onunhandledrejection = function(event){
+                possiblyUnhandledRejections.set(event.promise, event.reason);
+            }
+
+            window.onrejectionhandled = function(event){
+                possiblyUnhandledRejections.delete(event.promise);
+            };
+
+            setInterval(function(){
+                possiblyUnhandledRejections.forEach(function(reason,promise){
+                    console.log(reason.message ? reason.message : reason);
+                    handleRejection(promise, reason);
+                })
+            }, 60000);
+            
+        </script>
+        Test
+    </body>
+</html>
